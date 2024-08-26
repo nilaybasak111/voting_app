@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 
 const generatetoken = (UserData) => {
     // Generate a new JWT token using user data
-    return jwt.sign(UserData, process.env.JWT_SECRET, {expiresIn: 300000});
+    //return jwt.sign(UserData, process.env.JWT_SECRET, {expiresIn: 300000});
+    return jwt.sign(UserData, process.env.JWT_SECRET);
 }
 
 const jwtmiddleware = (req, res, next) => {

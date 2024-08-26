@@ -16,17 +16,19 @@ const candidateschema = new mongoose.Schema({
         required : true
     },
 
-    votes : {
-        user : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'User',
-            required : true
-        },
-        votedAt : {
-            type : Date,
-            default : Date.now()
+    votes : [
+        {
+            user : {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : 'User',
+                //required : true
+            },
+            votedAt : {
+                type : Date,
+                default : Date.now()
+            }
         }
-    },
+    ],
 
     voteCount : {
         type : Number,

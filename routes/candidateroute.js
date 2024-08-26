@@ -24,7 +24,7 @@ const checkAdminRole = async (userId) =>{
 // Creating a New Candidate
 router.post("/", jwtmiddleware, async(req,res)=>{
     try{
-        if(!(checkAdminRole(req.user.id))){
+        if(!( await checkAdminRole(req.user.id))){
             return res.status(403).json({message: 'user does not have admin role'});
         }
 
@@ -49,7 +49,7 @@ router.post("/", jwtmiddleware, async(req,res)=>{
 // Update a existing candidate
 router.put("/:candidateId", jwtmiddleware, async(req,res)=>{
     try{
-        if(!(checkAdminRole(req.user.id))){
+        if(!(await checkAdminRole(req.user.id))){
             return res.status(403).json({message: 'user does not have admin role'});
         }
 
@@ -81,7 +81,7 @@ router.put("/:candidateId", jwtmiddleware, async(req,res)=>{
 // Delete a Existing Candidate from the Candidate list
 router.delete("/:candidateId", jwtmiddleware, async(req, res)=> {
     try{
-        if(!(checkAdminRole(req.user.id))){
+        if(!(await checkAdminRole(req.user.id))){
             return res.status(403).json({message: 'user does not have admin role'});
         }
 
