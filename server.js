@@ -20,8 +20,8 @@ const votingroute = require("./routes/votingroute")
 
 // Using the Routes
 app.use("/user",userroute);
-app.use("/candidate",candidateroute);
-app.use("/",votingroute);
+app.use("/candidates",candidateroute);
+app.use("/vote",votingroute);
 
 app.listen(PORT, ()=>{
     console.log(`Server is on Port ${PORT}`);

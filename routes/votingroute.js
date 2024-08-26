@@ -27,7 +27,7 @@ router.get("/candidates", async(req, res)=>{
 
 
 // Here User or Voter can give their Votes
-router.get("/vote/:candidateId", jwtmiddleware, async(req, res)=>{
+router.get("/:candidateId", jwtmiddleware, async(req, res)=>{
     // no admin can vote
     // user can only vote once
 
@@ -77,7 +77,7 @@ router.get("/vote/:candidateId", jwtmiddleware, async(req, res)=>{
 
 
 // Get the list of candidates sorted by their vote counts
-router.get("/vote/counts", async(req, res)=>{
+router.get("/counts", async(req, res)=>{
     try{
         // Find all candidates and sort them by voteCount in descending order
         const candidate = await Candidate.find().sort({ voteCount: 'desc' });
