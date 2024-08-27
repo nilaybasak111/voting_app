@@ -66,7 +66,7 @@ router.get("/:candidateId", jwtmiddleware, async(req, res)=>{
 
 
         // Update the Candidate document to record the vote
-        candidate.votes.push({ isAdmin: userId})
+        candidate.votes.push({ isAdmin: userId });
         candidate.voteCount++;
         await candidate.save();
 
@@ -106,7 +106,6 @@ router.get("/counts", async(req, res)=>{
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error001' });}
 })
-
 
 
 module.exports = router;
