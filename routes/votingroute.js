@@ -44,20 +44,29 @@ router.get("/:candidateId", jwtmiddleware, async(req, res)=>{
 
 
         // Checking User is an Admin or Not
+
         const isAdmin = await User.findById(userId);
+        console.log("this is admin", isAdmin)
+        console.log("After isAdmin")
+
+        if(!isAdmin){
+            console.log("Inside !isAdmin")
+            return res.status(404).json({ message: 'user not found' });
+        }
 
         if(isAdmin.role == 'admin'){
+            console.log("Inside admin")
             return res.status(403).json({ message: 'admin is not allowed to Vote'});
         }
 
         // Checking User or Voter given their Vote or Not
-        if(isAdmin.isVoted = true){
+        if(isAdmin.isVoted){
             return res.status(400).json({ message: 'You have already given Your Vote' });
         }
 
 
         // Update the Candidate document to record the vote
-        candidate.votes.push({ isAdmin: userId});
+        candidate.votes.push({ isAdmin: userId})
         candidate.voteCount++;
         await candidate.save();
 

@@ -89,14 +89,17 @@ router.delete("/:candidateId", jwtmiddleware, async(req, res)=> {
         const candidateId = req.params.candidateId;
 
         // Deleting the Candidate using candidateId
-        const deleteCandidate = await User.findByIdAndDelete(candidateId);
+        const deleteCandidate = await Candidate.findByIdAndDelete(candidateId);
 
         if(!deleteCandidate){
             return res.status(404).json({ error: 'Candidate not found' });
         }
 
-        console.log('candidate data updated');
-        res.status(200).json(response);
+        console.log('Candidate Data Deleted Successfully');
+        res.status(200).json(
+            { msg : "Candidate Data Deleted Successfully"},
+            { response : deleteCandidate }
+        );
 
 
     }catch(err){
